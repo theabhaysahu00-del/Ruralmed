@@ -228,7 +228,7 @@ const AdminDoctors = () => {
                     </span>
                     {doc.medicalLicenseFile && (
                       <a
-                        href={`http://localhost:5000${doc.medicalLicenseFile}`}
+                        href={`https://ruralmed.onrender.com${doc.medicalLicenseFile}`}
                         target="_blank" rel="noopener noreferrer"
                         className="flex items-center gap-1.5 text-[9px] font-black text-blue-500 uppercase tracking-widest hover:underline"
                       >

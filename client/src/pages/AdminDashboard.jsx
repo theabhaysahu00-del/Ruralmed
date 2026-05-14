@@ -240,7 +240,7 @@ const VerificationCenter = () => {
                   <div className="flex flex-wrap items-center gap-4">
                     {req.medicalLicenseFile && (
                       <a 
-                        href={`http://localhost:5000${req.medicalLicenseFile}`} 
+                        href={`https://ruralmed.onrender.com${req.medicalLicenseFile}`} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[10px] font-black uppercase tracking-widest text-indigo-500 hover:bg-indigo-500 hover:text-white transition-all shadow-sm"
