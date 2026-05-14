@@ -32,7 +32,7 @@ exports.register = async (req, res, next) => {
     }
     
     const { user, token } = await authService.register(data);
-    res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 7 * 24 * 60 * 60 * 1000 });
+    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', maxAge: 7 * 24 * 60 * 60 * 1000 });
     res.status(201).json({ success: true, data: { user, token } });
   } catch (err) { next(err); }
 };
@@ -41,13 +41,13 @@ exports.login = async (req, res, next) => {
   try {
     const data = loginSchema.parse(req.body);
     const { user, token } = await authService.login(data);
-    res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', maxAge: 7 * 24 * 60 * 60 * 1000 });
+    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', maxAge: 7 * 24 * 60 * 60 * 1000 });
     res.json({ success: true, data: { user, token } });
   } catch (err) { next(err); }
 };
 
 exports.logout = (req, res) => {
-  res.clearCookie('token');
+  res.clearCookie('token', { httpOnly: true, secure: true, sameSite: 'none' });
   res.json({ success: true, message: 'Logged out successfully' });
 };
 
