@@ -1,0 +1,538 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  .dark {
+    color-scheme: dark;
+  }
+}
+
+@theme {
+  /* Role-based Colors */
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  
+  --color-patient: #10b981;
+  --color-patient-light: #d1fae5;
+  
+  --color-doctor: #2563eb;
+  --color-doctor-light: #dbeafe;
+  
+  --color-pharmacy: #8b5cf6;
+  --color-pharmacy-light: #ede9fe;
+  
+  --color-admin: #f59e0b;
+  --color-admin-light: #fef3c7;
+  
+  --color-emergency: #ef4444;
+  --color-emergency-light: #fee2e2;
+  
+  --color-healthcare-teal: #0d9488;
+  --color-healthcare-blue: #2563eb;
+  --color-healthcare-soft: #f8fafc;
+  --color-healthcare-navy: #0f172a;
+
+  /* Custom Radii */
+  --radius-3xl: 1.5rem;
+  --radius-4xl: 2.5rem;
+  --radius-5xl: 3rem;
+
+  /* Custom Shadows */
+  --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  --shadow-premium-hover: 0 25px 30px -5px rgba(16, 185, 129, 0.1), 0 15px 15px -5px rgba(16, 185, 129, 0.05);
+
+  /* Fonts */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-hindi: "Noto Sans Devanagari", sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --primary: 158 64% 52%;
+    --primary-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 158 64% 52%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --primary: 161 72% 39%;
+    --primary-foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 161 72% 39%;
+  }
+}
+
+@layer base {
+  body {
+    background-color: hsl(var(--background));
+    background-image: 
+      radial-gradient(at 10% 10%, rgba(16, 185, 129, 0.15) 0px, transparent 40%),
+      radial-gradient(at 90% 90%, rgba(37, 99, 235, 0.15) 0px, transparent 40%),
+      radial-gradient(at 90% 10%, rgba(245, 158, 11, 0.1) 0px, transparent 30%);
+    color: hsl(var(--foreground));
+    min-height: 100vh;
+    @apply antialiased selection:bg-primary/20;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 0.5s ease;
+    background-attachment: fixed;
+  }
+
+  .dark body {
+    background-image: 
+      radial-gradient(at 10% 10%, rgba(16, 185, 129, 0.2) 0px, transparent 40%),
+      radial-gradient(at 90% 90%, rgba(37, 99, 235, 0.2) 0px, transparent 40%),
+      radial-gradient(at 90% 10%, rgba(245, 158, 11, 0.15) 0px, transparent 30%);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-premium rounded-3xl;
+  }
+  
+  .premium-button {
+    @apply relative overflow-hidden px-6 py-3 rounded-2xl font-bold transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-lg;
+  }
+
+  .premium-input {
+    @apply bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none;
+  }
+}
+
+/* Custom Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 dark:bg-slate-800 rounded-full hover:bg-primary/40 transition-colors;
+}
+
+/* Medical Loader Styles - Responsive */
+.medical-loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  width: 100%;
+  padding: 2rem;
+}
+
+.Strich1 {
+  position: relative;
+  width: 80px;
+  height: 24px;
+  background: #0f172a;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .Strich1 {
+    width: 120px;
+    height: 36px;
+    border-radius: 18px;
+  }
+}
+
+.Strich2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #0f172a;
+  border-radius: inherit;
+  transform: rotate(90deg);
+}
+
+.bubble, .bubble1, .bubble2, .bubble3 {
+  position: absolute;
+  width: 15%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.bubble { background: radial-gradient(circle at 30% 30%, #10b981, #059669); animation: dropAndShift 3s ease-in-out infinite; }
+.bubble1 { background: radial-gradient(circle at 30% 30%, #34d399, #059669); animation: dropAndShift 4s ease-in-out infinite; }
+.bubble2 { background: radial-gradient(circle at 30% 30%, #6ee7b7, #10b981); animation: dropAndShift 2.5s ease-in-out infinite; }
+.bubble3 { background: radial-gradient(circle at 30% 30%, #a7f3d0, #34d399); animation: dropAndShift 5s ease-in-out infinite; }
+
+@keyframes dropAndShift {
+  0% { transform: translate(-150%, 0px); opacity: 0; }
+  10% { opacity: 1; }
+  50% { transform: translate(150%, 0px); }
+  90% { opacity: 1; }
+  100% { transform: translate(-150%, 0px); opacity: 0; }
+}
+
+
+/* Professional Truck Animation */
+.truck-loader {
+  @apply flex items-center justify-center overflow-hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.truckWrapper {
+  width: 120px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.truckBody {
+  width: 70px;
+  height: auto;
+  margin-bottom: 4px;
+  animation: truckVibrate 0.15s linear infinite;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes truckVibrate {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(1.5px) rotate(0.5deg); }
+}
+
+.truckTires {
+  width: 70px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
+  position: absolute;
+  bottom: 0;
+  z-index: 3;
+}
+
+.tiresvg {
+  width: 14px;
+  animation: tireSpin 0.3s linear infinite;
+}
+
+@keyframes tireSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.road {
+  width: 140%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  bottom: 1px;
+  border-radius: 4px;
+}
+
+.road::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255,255,255,0.5) 20%, 
+    rgba(255,255,255,0.5) 80%, 
+    transparent 100%
+  );
+  background-size: 20px 100%;
+  animation: roadFlow 0.5s linear infinite;
+}
+
+@keyframes roadFlow {
+  from { background-position: 0 0; }
+  to { background-position: -20px 0; }
+}
+
+/* Speed lines effect */
+.truckWrapper::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: -20%;
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5));
+  box-shadow: 0 15px 0 rgba(255,255,255,0.3), 0 30px 0 rgba(255,255,255,0.3);
+  animation: speedLines 0.4s linear infinite;
+}
+
+@keyframes speedLines {
+  from { transform: translateX(100px); opacity: 0; }
+  50% { opacity: 1; }
+  to { transform: translateX(-50px); opacity: 0; }
+}
+
+
+/* Hospital Locator Animation */
+.hospital-loader-container {
+  @apply flex items-center justify-center;
+  width: 100%;
+  height: 100%;
+}
+
+.hospital-loader {
+  width: 44.8px;
+  height: 44.8px;
+  position: relative;
+  transform: rotate(45deg);
+}
+
+.hospital-loader:before,
+.hospital-loader:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50% 50% 0 50%;
+  background: #0000;
+  background-image: radial-gradient(circle 11.2px at 50% 50%, #0000 94%, #fff);
+}
+
+.hospital-loader:after {
+  animation: pulse-hospital 1.5s infinite;
+  transform: perspective(336px) translateZ(0px);
+}
+
+@keyframes pulse-hospital {
+  to {
+    transform: perspective(336px) translateZ(168px);
+    opacity: 0;
+  }
+}
+
+
+/* Avatar Spin Animation */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+
+/* Tactile Premium Button Styles */
+.premium-tactile-button {
+  all: unset;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  position: relative;
+  border-radius: 100em;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow:
+    -0.15em -0.15em 0.15em -0.075em rgba(5, 5, 5, 0.1),
+    0.0375em 0.0375em 0.0675em 0 rgba(5, 5, 5, 0.05);
+}
+
+.premium-tactile-button::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  width: calc(100% + 0.3em);
+  height: calc(100% + 0.3em);
+  top: -0.15em;
+  left: -0.15em;
+  border-radius: inherit;
+  background: linear-gradient(
+    -135deg,
+    rgba(5, 5, 5, 0.5),
+    transparent 20%,
+    transparent 100%
+  );
+  filter: blur(0.0125em);
+  opacity: 0.1;
+  mix-blend-mode: multiply;
+}
+
+.premium-tactile-button .button-outer {
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  transition: box-shadow 300ms ease;
+  will-change: box-shadow;
+  box-shadow:
+    0 0.05em 0.05em -0.01em rgba(5, 5, 5, 0.5),
+    0 0.01em 0.01em -0.01em rgba(5, 5, 5, 0.2),
+    0.15em 0.3em 0.1em -0.01em rgba(5, 5, 5, 0.1);
+}
+
+.premium-tactile-button:hover .button-outer {
+  box-shadow: 0 0 0 0 rgba(5, 5, 5, 1), 0 0 0 0 rgba(5, 5, 5, 0.5), 0 0 0 0 rgba(5, 5, 5, 0.25);
+}
+
+.button-inner {
+  --inset: 0.035em;
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 0.8em 2em;
+  background-image: linear-gradient(
+    135deg,
+    #10b981,
+    #059669
+  );
+  transition: all 300ms ease;
+  will-change: box-shadow, clip-path, background-image, transform;
+  overflow: clip;
+  clip-path: inset(0 0 0 0 round 100em);
+  box-shadow:
+    0 0 0 0 inset rgba(5, 5, 5, 0.1),
+    -0.05em -0.05em 0.05em 0 inset rgba(5, 5, 5, 0.25),
+    0 0 0 0 inset rgba(5, 5, 5, 0.1),
+    0 0 0.05em 0.2em inset rgba(255, 255, 255, 0.15),
+    0.025em 0.05em 0.1em 0 inset rgba(255, 255, 255, 0.5),
+    0.12em 0.12em 0.12em inset rgba(255, 255, 255, 0.15),
+    -0.075em -0.25em 0.25em 0.1em inset rgba(5, 5, 5, 0.1);
+}
+
+.premium-tactile-button:hover .button-inner {
+  clip-path: inset(clamp(1px, 0.0625em, 2px) clamp(1px, 0.0625em, 2px) clamp(1px, 0.0625em, 2px) clamp(1px, 0.0625em, 2px) round 100em);
+  box-shadow:
+    0.1em 0.15em 0.05em 0 inset rgba(5, 5, 5, 0.5),
+    -0.025em -0.03em 0.05em 0.025em inset rgba(5, 5, 5, 0.2),
+    0.25em 0.25em 0.2em 0 inset rgba(5, 5, 5, 0.3),
+    0 0 0.05em 0.5em inset rgba(255, 255, 255, 0.1),
+    0 0 0 0 inset rgba(255, 255, 255, 1),
+    0.12em 0.12em 0.12em inset rgba(255, 255, 255, 0.1),
+    -0.075em -0.12em 0.2em 0.1em inset rgba(5, 5, 5, 0.1);
+}
+
+.premium-tactile-button .button-inner span {
+  position: relative;
+  z-index: 4;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  color: white;
+  transition: transform 250ms ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  will-change: transform;
+  text-shadow: rgba(0, 0, 0, 0.2) 0 0.1em 0.2em;
+  -webkit-user-select: none;
+  user-select: none;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.premium-tactile-button:hover .button-inner span {
+  transform: scale(0.97);
+}
+
+.premium-tactile-button:active .button-inner {
+  transform: scale(0.96);
+}
+
+
+/* Liquid Glass System */
+.liquid-glass {
+  position: relative;
+  isolation: isolate;
+  background: none;
+  border: none;
+}
+
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 16px -3px rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.liquid-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  backdrop-filter: blur(12px);
+  filter: url(#glass-distortion);
+  transition: all 0.5s ease;
+}
+
+.dark .liquid-glass::before {
+  background-color: rgba(15, 23, 42, 0.4);
+  box-shadow: inset 0 0 20px -5px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.liquid-glass:hover::after {
+  backdrop-filter: blur(16px);
+  transform: scale(1.02);
+}
+
+
+/* Skeleton Loading System */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  @apply relative overflow-hidden bg-slate-200 dark:bg-slate-800 rounded-lg;
+  background-image: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .skeleton {
+  background-image: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    transparent 100%
+  );
+}
+

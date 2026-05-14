@@ -1,0 +1,21 @@
+{
+  "name": "online-voting-system",
+  "version": "1.0.0",
+  "description": "Root project for Online Voting System",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "axios": "^1.16.0",
+    "dotenv": "^17.4.2",
+    "form-data": "^4.0.5",
+    "mongoose": "^9.6.2",
+    "puppeteer": "^24.43.0"
+  }
+}

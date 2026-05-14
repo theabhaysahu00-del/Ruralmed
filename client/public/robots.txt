@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ruralmed.netlify.app/sitemap.xml

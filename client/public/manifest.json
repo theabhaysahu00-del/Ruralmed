@@ -1,0 +1,53 @@
+{
+  "short_name": "RuralMed",
+  "name": "RuralMed - Healthcare Connect for Rural India",
+  "description": "Connecting millions to world-class medical care through telemedicine, AI diagnostics, and digital pharmacy.",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "form_factor": "wide",
+      "label": "RuralMed Dashboard"
+    },
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "form_factor": "narrow",
+      "label": "RuralMed Mobile App"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#10b981",
+  "background_color": "#0f172a",
+  "categories": ["medical", "health", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Book Appointment",
+      "url": "/patient/book-appointment",
+      "icons": [{ "src": "favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Symptom Checker",
+      "url": "/symptom-checker",
+      "icons": [{ "src": "favicon.svg", "sizes": "any" }]
+    }
+  ]
+}
